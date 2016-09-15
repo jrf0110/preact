@@ -4,8 +4,14 @@ declare namespace preact {
 		key?:string;
 	}
 
+	interface DangerouslySetInnerHTML {
+	 __html: string;
+	}
+
 	interface PreactHTMLAttributes {
+		dangerouslySetInnerHTML?:DangerouslySetInnerHTML;
 		key?:string;
+		ref?:(el?: Element) => void;
 	}
 
 	interface VNode {
@@ -277,8 +283,8 @@ declare namespace JSX {
 		charSet?:string;
 		challenge?:string;
 		checked?:boolean;
-		class?:string;
-		className?:string;
+		class?:string | { [key:string]: boolean };
+		className?:string | { [key:string]: boolean };
 		cols?:number;
 		colSpan?:number;
 		content?:string;
@@ -390,6 +396,8 @@ declare namespace JSX {
 		resource?:string;
 		typeof?:string;
 		vocab?:string;
+
+		[propName: string]: any;
 	}
 
 	interface IntrinsicElements {
